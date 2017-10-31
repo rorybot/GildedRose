@@ -1,12 +1,13 @@
 class SellBy
-  attr_reader :expires
+  attr_reader :days_left
 
-  def initialize(expires)
-    @expires = Time.parse(expires)
+  def initialize(days)
+    @days_left = days
   end
 
-  def days_left(current_date)
-    distance_in_seconds = expires - Time.parse(current_date)
-    distance_in_seconds / 60 / 60 / 24
+  def update
+    @days_left -= 1 if days_left > 0
   end
+
+
 end
