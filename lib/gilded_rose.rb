@@ -6,18 +6,17 @@ class GildedRose
   end
 
   def update_quality
-    @items.each do |item| # iterates over every item
-      # excludes Aged Brie from quality reductiondue to special date increase of quality; excludes pass from quality reduction due to special date increase of quality
+    @items.each do |item|
 
-      item.quality.update # Checks that item cannot go into negative quality
+      item.quality.update
 
-      if item.name == 'Backstage passes to a TAFKAL80ETC concert' # checks if pass, and institutes rules for it
-          item.quality.update if item.sell_in < 11 # checs again that quality of item is still not 50
-
-          item.quality.update if item.sell_in < 6
+      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+          item.quality.update if item.sell_in.days_left < 11
+          item.quality.update if item.sell_in.days_left < 6
       end
 
-      item.sell_in = item.sell_in - 1 # decreases sell_by_date
+    item.sell_in.update
+
     end
   end
 end
