@@ -15,7 +15,7 @@ class GildedRose
           end
         end
 
-      else # special property rules
+      else # special zproperty rules
 
         if item.quality < 50 # items are limited at a quality of 50
           item.quality = item.quality + 1 # increases quality of special item

@@ -7,6 +7,6 @@ class SellBy
 
   def days_left(current_date)
     distance_in_seconds = expires - Time.parse(current_date)
-    distance_in_seconds/60/60/24
+    distance_in_seconds / 60 / 60 / 24
   end
 end
