@@ -13,8 +13,6 @@ class Quality
     change_quality(1)
   end
 
-
-
   private
 
   def change_quality(amount)
