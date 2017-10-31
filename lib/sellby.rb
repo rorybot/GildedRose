@@ -6,12 +6,12 @@ class SellBy
   end
 
   def update
-    @days_left -= 1 if days_left > 0
+    @days_left -= 1
   end
 
   def modifier
-    return 1 if days_left >= 11
+    return 1 if days_left >= 11 || days_left < 0
     return 2 if days_left < 11 && days_left >= 6
-    return 3 if days_left < 6 && days_left > 0
+    return 3 if days_left < 6 && days_left >= 0
   end
 end
