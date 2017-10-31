@@ -58,6 +58,15 @@ describe GildedRose do
         expect(items[0].quality.quality).to eq 11
         expect(items[0].sell_in.days_left).to eq 10
       end
+
+      it 'ticket price goes to 0 when -1 days left' do
+        items = [Item.new('Backstage passes to a TAFKAL80ETC concert', SellBy.new(0), Quality.new(10, false, true))]
+        GildedRose.new(items).update_quality
+        p items[0].sell_in.days_left
+        p items[0].quality.grower
+        p items[0].name
+        expect(items[0].quality.quality).to eq 0
+      end
     end
 
     context 'Sulfuras' do
