@@ -14,4 +14,11 @@ describe Quality do
       expect(a_quality.change_quality(-1)).to eq (1)
     end
   end
+
+  describe 'immortal objects' do
+    it 'cannot be changed' do
+      immortal_quality = Quality.new(50)
+      expect(a_quality.change_quality(-1))
+    end
+  end
 end
