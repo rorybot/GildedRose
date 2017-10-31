@@ -47,5 +47,13 @@ describe GildedRose do
         expect(items[0].quality).to eq 30
       end
     end
+
+    context 'Aged Brie' do
+      it 'goes up in value' do
+        items = [Item.new('Aged Brie', 1, 30)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 31
+      end
+    end
   end
 end
