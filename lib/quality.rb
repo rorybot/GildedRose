@@ -1,9 +1,9 @@
 class Quality
-  attr_reader :immortal, :grower, :quality
+  attr_reader :immutable, :grower, :quality
   MAX_QUALITY = 50
-  def initialize(quality, immortal = false, grower = false)
+  def initialize(quality, immutable = false, grower = false)
     @quality = quality
-    @immortal = immortal
+    @immutable = immutable
     @grower = grower
     @quality
   end
@@ -15,7 +15,7 @@ class Quality
 
   def flatline
     @quality = 0
-    @grower = false
+    @immutable = true
   end
 
   def to_s
@@ -25,7 +25,7 @@ class Quality
   private
 
   def change_quality(amount)
-    return @quality += amount unless immortal == true || over_limit?(amount) || would_go_neg?(amount)
+    return @quality += amount unless immutable == true || over_limit?(amount) || would_go_neg?(amount)
     'No can do'
   end
 
