@@ -9,13 +9,21 @@ describe Quality do
     end
 
     it 'cannot go past 50' do
+      fifty_quality = Quality.new(50,false,true)
+      expect(fifty_quality.update).to eq "No can do"
     end
+
+    it 'cannot go below 0' do
+      a_quality.update
+      expect(a_quality.update).to eq "No can do"
+    end
+
   end
 
   describe 'immortal objects' do
     it 'cannot be changed' do
       immortal_quality = Quality.new(50, true)
-      expect(immortal_quality.change_quality(-1)).to eq "That which is dead can never die"
+      expect(immortal_quality.update).to eq "No can do"
     end
   end
 
