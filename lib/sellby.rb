@@ -1,8 +1,9 @@
 class SellBy
-  attr_reader :days_left
+  attr_reader :days_left, :special_object
 
-  def initialize(days)
+  def initialize(days, special_object = false)
     @days_left = days
+    @special_object = special_object
   end
 
   def update
