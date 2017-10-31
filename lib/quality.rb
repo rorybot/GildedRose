@@ -1,6 +1,6 @@
 class Quality
 
-  attr_reader :immortal
+  attr_reader :immortal, :grower
   def initialize(quality, immortal=false, grower=false)
     @quality = quality
     @immortal = immortal
@@ -8,6 +8,10 @@ class Quality
     return @quality
   end
 
+  def update
+    return change_quality(-1) unless grower == true
+    change_quality(1)
+  end
 
   def change_quality(amount)
     return @quality += amount unless immortal == true

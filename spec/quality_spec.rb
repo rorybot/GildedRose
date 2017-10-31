@@ -1,16 +1,11 @@
 require 'quality'
 
 describe Quality do
-  let(:a_quality) { Quality.new(0) }
+  let(:a_quality) { Quality.new(1) }
 
   describe 'base quality property' do
-    it 'can be increased' do
-      expect(a_quality.change_quality(2)).to eq 2
-    end
-
     it 'can be decreased' do
-      a_quality.change_quality(2)
-      expect(a_quality.change_quality(-1)).to eq 1
+      expect(a_quality.update).to eq 0
     end
 
     it 'cannot go past 50' do
@@ -26,7 +21,7 @@ describe Quality do
 
   describe 'growing quality objects' do
     it 'increases in quality if a grower' do
-      grower_quality = Quality.new(30)
+      grower_quality = Quality.new(30,false, true)
       expect(grower_quality.update).to eq(31)
     end
   end
