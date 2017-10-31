@@ -19,7 +19,7 @@ describe GildedRose do
     end
 
     it 'cannot go past 50' do
-      items = [Item.new('foo', SellBy.new(10), Quality.new(50,false,true))]
+      items = [Item.new('foo', SellBy.new(10), Quality.new(50, false, true))]
       GildedRose.new(items).update_quality
       expect(items[0].quality.quality).to eq 50
       expect(items[0].sell_in.days_left).to eq 9
@@ -62,7 +62,7 @@ describe GildedRose do
 
     context 'Sulfuras' do
       it 'does not change' do
-        items = [Item.new('foo', SellBy.new(10), Quality.new(30,true))]
+        items = [Item.new('foo', SellBy.new(10), Quality.new(30, true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 30
         expect(items[0].sell_in.days_left).to eq 9
@@ -71,7 +71,7 @@ describe GildedRose do
 
     context 'Aged Brie' do
       it 'goes up in value' do
-        items = [Item.new('foo', SellBy.new(10), Quality.new(30,false,true))]
+        items = [Item.new('foo', SellBy.new(10), Quality.new(30, false, true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 31
         expect(items[0].sell_in.days_left).to eq 9
