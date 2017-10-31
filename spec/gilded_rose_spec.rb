@@ -32,11 +32,6 @@ describe GildedRose do
       expect(items[0].sell_in.days_left).to eq 9
     end
 
-    # it 'increase quality' do
-    #   items = [Item.new('Sulfuras, Hand of Ragnaros', 10, Quality.new(10,true))]
-    #   expect(GildedRose.new(items).update_quality).to eq "No can do"
-    # end
-
     context 'tickets' do
       it 'increase ticket price by 3 when 5 days left' do
         items = [Item.new('Backstage passes to a TAFKAL80ETC concert', SellBy.new(5), Quality.new(10, false, true))]
@@ -62,9 +57,6 @@ describe GildedRose do
       it 'ticket price goes to 0 when -1 days left' do
         items = [Item.new('Backstage passes to a TAFKAL80ETC concert', SellBy.new(0), Quality.new(10, false, true))]
         GildedRose.new(items).update_quality
-        p items[0].sell_in.days_left
-        p items[0].quality.grower
-        p items[0].name
         expect(items[0].quality.quality).to eq 0
       end
     end

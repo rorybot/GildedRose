@@ -13,6 +13,11 @@ class Quality
     change_quality(1)
   end
 
+  def flatline
+    @quality = 0
+    @grower = false
+  end
+
   private
 
   def change_quality(amount)
