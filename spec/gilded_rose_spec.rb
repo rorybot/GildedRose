@@ -18,7 +18,7 @@ describe GildedRose do
     end
 
     it 'cannot go past 50' do
-      items = [Item.new('foo', 10, Quality.new(50))]
+      items = [Item.new('foo', 10, Quality.new(50,false,true))]
       GildedRose.new(items).update_quality
       expect(items[0].quality.quality).to eq 50
       expect(items[0].sell_in).to eq 9
@@ -27,7 +27,7 @@ describe GildedRose do
     it 'cannot go below 0' do
       items = [Item.new('foo', 10, Quality.new(0))]
       GildedRose.new(items).update_quality
-      expect(items[0].quality.quality).to eq -1
+      expect(items[0].quality.quality).to eq 0
       expect(items[0].sell_in).to eq 9
     end
 
