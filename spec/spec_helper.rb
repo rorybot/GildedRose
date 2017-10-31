@@ -1,6 +1,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require './lib/gilded_rose'
+require './lib/item'
 # require_relative 'helpers/session_helpers.rb'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
