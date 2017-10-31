@@ -12,27 +12,28 @@ class GildedRose
         if item.quality.quality > 0 # Checks that item cannot go into negative quality
           if item.name != 'Sulfuras, Hand of Ragnaros' # Checks that item is not a special type that can never lose quality (true/false status)
             item.quality.update
-            return item.quality.quality # reduces quality
           end
         end
 
       else # special zproperty rules
+        item.quality.update if item.quality.quality < 50 # items are limited at a quality of 50
 
-        if item.quality < 50 # items are limited at a quality of 50
-          item.quality = item.quality + 1 # increases quality of special item
+
           if item.name == 'Backstage passes to a TAFKAL80ETC concert' # checks if pass, and institutes rules for it
+
             if item.sell_in < 11 # special quality rules for when it is less than ten days till expiration date, but more than 5
-              if item.quality < 50 # checs again that quality of item is still not 50
-                item.quality = item.quality + 1 # increases quality
-              end
+               item.quality.update if item.quality.quality < 50 # checs again that quality of item is still not 50
+                 # increases quality
             end
+
             if item.sell_in < 6 # special qialuty rules for when less than 6 days left before expiration date
-              if item.quality < 50 # checks again taht quality of item is still not 50
-                item.quality = item.quality + 1 # increases quality (Needs something to drop it to zero though)
-              end
+              item.quality.update if item.quality.quality < 50 # checks again taht quality of item is still not 50
+                 # increases quality (Needs something to drop it to zero though)
+
             end
+
           end
-        end
+
 
       end
 
