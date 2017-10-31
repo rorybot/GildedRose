@@ -17,6 +17,20 @@ describe GildedRose do
       expect(items[0].sell_in).to eq 9
     end
 
+    it 'cannot go past 50' do
+      items = [Item.new('foo', 10, Quality.new(50))]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality.quality).to eq 50
+      expect(items[0].sell_in).to eq 9
+    end
+
+    it 'cannot go below 0' do
+      items = [Item.new('foo', 10, Quality.new(0))]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality.quality).to eq -1
+      expect(items[0].sell_in).to eq 9
+    end
+
     # it 'increase quality' do
     #   items = [Item.new('Sulfuras, Hand of Ragnaros', 10, Quality.new(10,true))]
     #   expect(GildedRose.new(items).update_quality).to eq "No can do"

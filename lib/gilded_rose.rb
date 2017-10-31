@@ -7,12 +7,10 @@ class GildedRose
 
   def update_quality
     @items.each do |item| # iterates over every item
-      if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert') # excludes Aged Brie from quality reductiondue to special date increase of quality; excludes pass from quality reduction due to special date increase of quality
+# excludes Aged Brie from quality reductiondue to special date increase of quality; excludes pass from quality reduction due to special date increase of quality
 
-        item.quality.update if item.quality.quality > 0 # Checks that item cannot go into negative quality
+        item.quality.update if item.quality.quality > 0 && item.quality.quality < 50 # Checks that item cannot go into negative quality
 
-      else # special zproperty rules
-        item.quality.update if item.quality.quality < 50 # items are limited at a quality of 50
 
         if item.name == 'Backstage passes to a TAFKAL80ETC concert' # checks if pass, and institutes rules for it
 
@@ -26,7 +24,7 @@ class GildedRose
             # increases quality (Needs something to drop it to zero though)
           end
         end
-      end
+
 
 
       item.sell_in = item.sell_in - 1 # decreases sell_by_date
