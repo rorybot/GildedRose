@@ -10,5 +10,13 @@ class SellBy
     @days_left -= 1 if days_left > 0
   end
 
+  def modifier
+    2 if backstage_pass? && days_left < 11 && days_left >= 6
+  end
+
+  def backstage_pass?
+    special_object == 'Backstage passes to a TAFKAL80ETC concert'
+  end
+
 
 end

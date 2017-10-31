@@ -14,6 +14,19 @@ describe SellBy do
       selly = SellBy.new(10)
       expect(selly.update).to eq 9
     end
+
+    it 'modifier returns 2 if 7 days left of backstage pass' do
+      selly = SellBy.new(7, 'Backstage passes to a TAFKAL80ETC concert')
+      expect(selly.modifier).to eq 2
+    end
+
+    it 'modifier no modifier if 7 days left of normal object' do
+      selly = SellBy.new(7)
+      expect(selly.modifier).to eq nil
+    end
+
+
+
   end
 
 end
