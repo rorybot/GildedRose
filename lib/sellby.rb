@@ -11,7 +11,9 @@ class SellBy
   end
 
   def modifier
-    2 if backstage_pass? && days_left < 11 && days_left >= 6
+    return 1 if backstage_pass? && days_left >= 11
+    return 2 if backstage_pass? && days_left < 11 && days_left >= 6
+    return 3 if backstage_pass? && days_left < 6 && days_left > 0
   end
 
   def backstage_pass?
