@@ -4,7 +4,7 @@ class Quality
     @quality = quality
   end
 
-  def increase_quality(amount)
+  def change_quality(amount)
     @quality +=(amount)
   end
 
