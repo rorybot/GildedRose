@@ -4,15 +4,39 @@ require 'quality'
 describe GildedRose do
   describe '#update_quality' do
     it 'does not change the name' do
-      items = [Item.new('foo', 0, Quality.new(10))]
+      items = [Item.new('foo', 0, 10)]
       GildedRose.new(items).update_quality
       expect(items[0].name).to eq 'foo'
     end
 
     it 'reduces by 1' do
-      items = [Item.new('foo', 10, Quality.new(10))]
+      items = [Item.new('foo', 10, 10)]
       GildedRose.new(items).update_quality
       expect(items[0].quality).to eq 9
     end
+
+    # it 'increase quality' do
+    #   items = [Item.new('Sulfuras, Hand of Ragnaros', 10, Quality.new(10,true))]
+    #   expect(GildedRose.new(items).update_quality).to eq "No can do"
+    # end
+
+    it 'increase ticket price by 3 when 5 days left' do
+      items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 13
+    end
+
+    it 'increase ticket price by 2 when 10 days left' do
+      items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 12
+    end
+
+    it 'increase ticket price by 1 when 11 days left' do
+      items = [Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 11
+    end
+
   end
 end
