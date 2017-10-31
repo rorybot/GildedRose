@@ -18,6 +18,10 @@ class Quality
     @grower = false
   end
 
+  def to_s
+    "#{@quality}"
+  end
+
   private
 
   def change_quality(amount)
