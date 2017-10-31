@@ -9,9 +9,10 @@ class GildedRose
     @items.each do |item| # iterates over every item
       if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert') # excludes Aged Brie from quality reductiondue to special date increase of quality; excludes pass from quality reduction due to special date increase of quality
 
-        if item.quality > 0 # Checks that item cannot go into negative quality
+        if item.quality.quality > 0 # Checks that item cannot go into negative quality
           if item.name != 'Sulfuras, Hand of Ragnaros' # Checks that item is not a special type that can never lose quality (true/false status)
-            item.quality = item.quality - 1 # reduces quality
+            item.quality.update
+            return item.quality.quality # reduces quality
           end
         end
 

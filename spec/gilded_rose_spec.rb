@@ -4,15 +4,15 @@ require 'quality'
 describe GildedRose do
   describe '#update_quality' do
     it 'does not change the name' do
-      items = [Item.new('foo', 0, 10)]
+      items = [Item.new('foo', 10, Quality.new(10))]
       GildedRose.new(items).update_quality
       expect(items[0].name).to eq 'foo'
     end
 
     it 'reduces by 1' do
-      items = [Item.new('foo', 10, 10)]
+      items = [Item.new('foo', 10, Quality.new(10))]
       GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq 9
+      expect(items[0].quality.quality).to eq 9
     end
 
     # it 'increase quality' do
@@ -42,9 +42,9 @@ describe GildedRose do
 
     context 'Sulfuras' do
       it 'does not change' do
-        items = [Item.new('Sulfuras, Hand of Ragnaros', 0, 30)]
+        items = [Item.new('foo', 10, Quality.new(30,true))]
         GildedRose.new(items).update_quality
-        expect(items[0].quality).to eq 30
+        expect(items[0].quality.quality).to eq 30
       end
     end
 
