@@ -21,7 +21,7 @@ class GildedRose
   private
 
   def normal_update(item)
-    item.quality.update unless item.name.special_item? # checks if something isn't one of the special items that have different ways of updating or limits on them, and executes Quality's usual update routine (which goes up or down depending on how item Quality was initialised)
+    item.quality.update unless item.name.backstage_pass? # checks if something isn't one of the special items that have different ways of updating or limits on them, and executes Quality's usual update routine (which goes up or down depending on how item Quality was initialised)
   end
 
   def one_day_less(item)
