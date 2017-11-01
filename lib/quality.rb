@@ -13,7 +13,7 @@ class Quality
   end
 
   def flatline
-    update(-value)
+    change_value(-value)
     @grower = false
   end
 
@@ -23,16 +23,13 @@ class Quality
 
   private
 
-  def change_value(amount)
-    return @value += amount unless immutable == true || over_limit?(amount) || would_go_neg?(amount)
+  def change_value(amount, override = false)
+    return @value += amount unless immutable || outside_bounds?(amount)
     'No can do'
   end
 
-  def would_go_neg?(amount)
-    value + amount < 0
-  end
-
-  def over_limit?(amount)
-    value + amount > MAX_QUALITY
+  def outside_bounds?(amount)
+    # value + amount > MAX_QUALITY || value + amount < 0
+    (value + amount).between?(0,MAX_QUALITY) == false
   end
 end
