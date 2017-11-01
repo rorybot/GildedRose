@@ -23,13 +23,12 @@ class Quality
 
   private
 
-  def change_value(amount, override = false)
+  def change_value(amount, _override = false)
     return @value += amount unless immutable || outside_bounds?(amount)
     'No can do'
   end
 
   def outside_bounds?(amount)
-    # value + amount > MAX_QUALITY || value + amount < 0
-    (value + amount).between?(0,MAX_QUALITY) == false
+    (value + amount).between?(0, MAX_QUALITY) == false
   end
 end

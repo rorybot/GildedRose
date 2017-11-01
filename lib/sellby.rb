@@ -14,8 +14,8 @@ class SellBy
   end
 
   def pass_modifier
-    return 1 if days_left >= 11 # returns how many times to modify depending on date range
-    return 2 if days_left.between?(6, 10) # returns how many times to modify depending on date range
-    return 3 if days_left.between?(0, 5) # returns how many times to modify depending on date range
+    return 1 if days_left >= 11
+    return 2 if days_left.between?(6, 10)
+    return 3 if days_left.between?(0, 5)
   end
 end
