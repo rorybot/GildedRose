@@ -10,9 +10,9 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
-      normal_update(item)
-
       remove_all_value_when_expired(item)
+
+      normal_modifier(item.name).times { normal_update(item) }
 
       pass_modifier(item.sell_in).times { item.quality.update } if item.name == 'Backstage passes to a TAFKAL80ETC concert'
 
@@ -39,4 +39,10 @@ class GildedRose
     return 2 if sell_by_date.days_left < 11 && sell_by_date.days_left >= 6
     return 3 if sell_by_date.days_left < 6 && sell_by_date.days_left >= 0
   end
+
+  def normal_modifier(name)
+    return 2 if name.include? 'Conjured'
+    1
+  end
+
   end

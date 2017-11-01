@@ -32,6 +32,16 @@ describe GildedRose do
       expect(items[0].sell_in.days_left).to eq 9
     end
 
+    context 'conjured items' do
+      it 'increases twice as fast if a conjured item' do
+        items = [Item.new('Magic Pie [Conjured]', SellBy.new(10), Quality.new(10))]
+        GildedRose.new(items).update_quality
+        p items[0].name
+        expect(items[0].quality.quality).to eq 8
+        expect(items[0].sell_in.days_left).to eq 9
+      end
+    end
+
     context 'tickets' do
       it 'increase ticket price by 3 when 5 days left' do
         items = [Item.new('Backstage passes to a TAFKAL80ETC concert', SellBy.new(5), Quality.new(10, false, true))]
