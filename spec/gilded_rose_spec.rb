@@ -3,7 +3,6 @@ require 'quality'
 require 'sellby'
 
 describe GildedRose do
-
   let(:normal_item_name) do
     double('Name', name: 'foo', backstage_pass?: false, to_s: 'foo', normal_modifier: 1)
   end
@@ -88,20 +87,34 @@ describe GildedRose do
     end
 
     context 'Sulfuras' do
-      it 'does not change' do
+      it 'does not change before sellby date' do
         items = [Item.new(sulfuras, SellBy.new(10), Quality.new(30, immutable = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 30
         expect(items[0].sell_in.days_left).to eq 9
       end
+
+      it 'does not change after sellby date' do
+        items = [Item.new(sulfuras, SellBy.new(0), Quality.new(30, immutable = true))]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality.quality).to eq 30
+        expect(items[0].sell_in.days_left).to eq -1
+      end
     end
 
     context 'Aged Brie' do
-      it 'goes up in value' do
+      it 'goes up in value when not expired' do
         items = [Item.new(ItemName.new('Aged Brie'), SellBy.new(10), Quality.new(30, immutable = false, grower = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 31
         expect(items[0].sell_in.days_left).to eq 9
+      end
+
+      it 'goes up in value past expiration date' do
+        items = [Item.new(ItemName.new('Aged Brie'), SellBy.new(-1), Quality.new(30, immutable = false, grower = true))]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality.quality).to eq 31
+        expect(items[0].sell_in.days_left).to eq -2
       end
     end
   end

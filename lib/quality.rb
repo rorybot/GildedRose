@@ -5,17 +5,16 @@ class Quality
     @quality = quality
     @immutable = immutable
     @grower = grower
-    @quality
   end
 
-  def update
-    return change_quality(-1) unless grower == true
-    change_quality(1)
+  def update(value = 1)
+    return change_quality(-value) unless grower == true
+    change_quality(value)
   end
 
   def flatline
-    @quality = 0
-    @immutable = true
+    update(-quality)
+    @grower = false
   end
 
   def to_s
