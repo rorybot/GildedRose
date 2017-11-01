@@ -1,11 +1,8 @@
 require_relative 'item'
 
 class GildedRose
-  attr_reader :special_items
-
   def initialize(items)
     @items = items
-    @special_items = ['Backstage passes to a TAFKAL80ETC concert']
   end
 
   def update_quality # Updates the quality of each item
@@ -24,7 +21,7 @@ class GildedRose
   private
 
   def normal_update(item)
-    item.quality.update unless special_items.include?(item.name.to_s) # checks if something isn't one of the special items that have different ways of updating or limits on them, and executes Quality's usual update routine (which goes up or down depending on how item Quality was initialised)
+    item.quality.update unless item.name.special_item? # checks if something isn't one of the special items that have different ways of updating or limits on them, and executes Quality's usual update routine (which goes up or down depending on how item Quality was initialised)
   end
 
   def one_day_less(item)
@@ -40,7 +37,4 @@ class GildedRose
     1
   end
 
-    # def backstage_pass?(item)
-    #   item.name == 'Backstage passes to a TAFKAL80ETC concert'
-    # end
   end

@@ -43,28 +43,28 @@ describe GildedRose do
 
     context 'tickets' do
       it 'increase ticket price by 3 when 5 days left' do
-        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(5), Quality.new(10, false, true))]
+        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(5), Quality.new(10, immutable = false, grower = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 13
         expect(items[0].sell_in.days_left).to eq 4
       end
 
       it 'increase ticket price by 2 when 10 days left' do
-        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(10), Quality.new(10, false, true))]
+        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(10), Quality.new(10, immutable = false, grower = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 12
         expect(items[0].sell_in.days_left).to eq 9
       end
 
       it 'increase ticket price by 1 when 11 days left' do
-        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(11), Quality.new(10, false, true))]
+        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(11), Quality.new(10, immutable = false, grower = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 11
         expect(items[0].sell_in.days_left).to eq 10
       end
 
       it 'ticket price goes to 0 when -1 days left' do
-        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(0), Quality.new(10, false, true))]
+        items = [Item.new(ItemName.new('Backstage passes to a TAFKAL80ETC concert'), SellBy.new(0), Quality.new(10, immutable = false, grower = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 0
       end
@@ -72,7 +72,7 @@ describe GildedRose do
 
     context 'Sulfuras' do
       it 'does not change' do
-        items = [Item.new(ItemName.new('Sulfuras'), SellBy.new(10), Quality.new(30, true))]
+        items = [Item.new(ItemName.new('Sulfuras'), SellBy.new(10), Quality.new(30, immutable = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 30
         expect(items[0].sell_in.days_left).to eq 9
@@ -81,7 +81,7 @@ describe GildedRose do
 
     context 'Aged Brie' do
       it 'goes up in value' do
-        items = [Item.new(ItemName.new('Aged Brie'), SellBy.new(10), Quality.new(30, false, true))]
+        items = [Item.new(ItemName.new('Aged Brie'), SellBy.new(10), Quality.new(30, immutable = false, grower = true))]
         GildedRose.new(items).update_quality
         expect(items[0].quality.quality).to eq 31
         expect(items[0].sell_in.days_left).to eq 9
