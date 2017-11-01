@@ -5,19 +5,19 @@ require 'sellby'
 describe GildedRose do
 
   let(:normal_item_name) do
-    double('Name', name: 'foo', backstage_pass?: false, to_s: 'foo')
+    double('Name', name: 'foo', backstage_pass?: false, to_s: 'foo', normal_modifier: 1)
   end
 
   let(:conjured_item) do
-    double('Name', name: 'Magic Pie [Conjured]', backstage_pass?: false, to_s: 'Magic Pie [Conjured]')
+    double('Name', name: 'Magic Pie [Conjured]', backstage_pass?: false, to_s: 'Magic Pie [Conjured]', normal_modifier: 2)
   end
 
   let(:backstage_pass) do
-    double('Name', name: 'Backstage passes to a TAFKAL80ETC concert', backstage_pass?: true, to_s: 'Backstage passes to a TAFKAL80ETC concert')
+    double('Name', name: 'Backstage passes to a TAFKAL80ETC concert', backstage_pass?: true, to_s: 'Backstage passes to a TAFKAL80ETC concert', normal_modifier: 1)
   end
 
   let(:sulfuras) do
-    double('Name', name: 'Sulfuras', backstage_pass?: false, to_s: 'Backstage passes to a TAFKAL80ETC concert')
+    double('Name', name: 'Sulfuras', backstage_pass?: false, to_s: 'Backstage passes to a TAFKAL80ETC concert', normal_modifier: 1)
   end
 
   describe '#update_quality' do
