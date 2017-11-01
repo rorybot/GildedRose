@@ -2,6 +2,7 @@ require 'simplecov'
 require 'simplecov-console'
 require './lib/gilded_rose'
 require './lib/item'
+require './lib/name'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [SimpleCov::Formatter::Console,

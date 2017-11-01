@@ -19,7 +19,7 @@ class Quality
   end
 
   def to_s
-    "#{@quality}"
+    @quality.to_s
   end
 
   private
